@@ -1,0 +1,14 @@
+=============================================
+		          Projeto Blog
+=============================================
+- Criar pasta projetos;
+- Criar pasta Blog;
+- Criar pasta .ideas dentro da pasta Blog;
+- Procurar layout e salvar na pasta .ideas;
+- Usar o Just Color Picker para saber quais as cores do projeto;
+- Abrir terminal no VSCode;
+- Voltar para pasta projetos escrevendo cd .. no terminal do VSCode;
+- No terminal escrever ng new angular-blog;
+- Abrir o GitHub e criar um repositório para armazenar o projeto;
+- Recortar a pasta .ideas e colar na pasta angular-blog criada pelo ng new;
+- No VSCode clicar em arquivo, abrir pasta, selecionar a pasta angular-blog;
