@@ -1,5 +1,5 @@
 =============================================
-		          Projeto Blog
+		Projeto Blog
 =============================================
 - Criar pasta projetos;
 - Criar pasta Blog;
@@ -12,3 +12,149 @@
 - Abrir o GitHub e criar um repositório para armazenar o projeto;
 - Recortar a pasta .ideas e colar na pasta angular-blog criada pelo ng new;
 - No VSCode clicar em arquivo, abrir pasta, selecionar a pasta angular-blog;
+- No terminal do VSCode escrever:
+	git init
+	git add .
+	git commit -m "first commit"
+	git branch -M main
+	git remote add origin https://github.com/BReimberg/angular-blog.git
+	git push -u origin main
+
+- No terminal do VSCode escrever ng serve
+- Analizar a imagem de idia de layout e separa os componentes;
+- Excluir os arquivos spec.ts criados pelo ng new que estão na pasta src/app;
+- Abrir outro terminal no VSCode;
+- Abrir o arquivo app.component.htm dentro da pasta src/app;
+- Excluir tudo o que está nesse arquivo HTML EXCETO <router-outlet></router-outlet> que está no final do arquivo;
+- No layout de inspiração para o projeto, coletar e armazenar a cor de fundo que será utilizada em todos os componentes;
+- No arquivo styles.css (estilo global) src/styles escrever:
+
+	* {
+	  margin: 0;
+	  padding: 0;
+	  box-sizing: border-box;
+	  Background-color: #111111; // cor de fundo do layout de inspiração.
+	  color: white;
+	  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	};
+	
+	a {
+  	  text-decoration: none;
+	}
+
+- No terminal livre criar os componentes: 
+	ng g c components/menu-bar;
+	ng g c components/menu-title;
+	ng g c components/big-card;
+	ng g c components/small-card;
+
+- Excluir os arquivos spec.ts criados em cada pasta de componentes;
+- Copiar o seletor do menu-title que está na pasta src/app/components/menu-title/menu-title.components.ts;
+- Colar o nome do seletor no arquivo app.component.htm, que está na pasta src. EXEMPLO: <app-menu-title></app-menu-title>;
+- No arquivo menu-title.component.html criar:
+
+<div class="container__menu-title">
+  <hr/>
+    <h1>THE BLOG</h1>
+  <hr/>
+</div>
+
+- No arquivo menu-title.component.css criar:
+
+ .container__menu-title {
+  color: white;
+}
+
+.container__menu-title > h1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 150px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.container__menu-title > hr {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+- Criar uma pasta dentro de src/app, com o nome pages;
+- No terminal do VSCode criar um componente: ng g c pages/home;
+- Deletar o arquivo .spec.ts na pasta src/app/pages/home/home.component.spec.ts;
+- Copiar o seletor do arquivo home.component.ts e colar no arquivo app.component.hmtl EXEMPLO: <app-home></app-home>;
+- Copiar o seletor do arquivo menu-title.component.ts e colar no arquivo home.component.html EXEMPLO: <app-menu-title></app-menu-title>;
+- No arquivo home.component.html escrever: 
+
+<div class="container__articles">
+  <div class="articles__main">
+    <app-big-card></app-big-card>
+  </div>
+  <div class="articles__others">
+    <app-small-card></app-small-card>
+  </div>
+</div>
+
+- No arquivo big-card.component.html escrever:
+
+<div class="container__big-card">
+  <div class="big-card__photo">
+    <img src="https://miro.medium.com/v2/resize:fit:1358/0*KNqK1IFDqENcyGXS"
+     alt="" height="200px" srcset="">
+  </div>
+
+  <div class="big-card__title">
+    <h1><a href="#">Saiu a nova versão do Angular</a></h1>
+  </div>
+
+  <div class="big-card__description">
+    <p><a href="#">Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Praesent varius purus
+      et lacus sagittis pulvinar. In elementum
+      dui non quam eleifend, vitae molestie lectus
+      ullamcorper. </a></p>
+  </div>
+</div>
+
+- No arquivo big-card.component.css escrever:
+
+.container__big-card {
+  border: solid white 2px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 400px;
+  height: 500px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.big-card__title > h1 {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.big-card__description {
+  margin-top: 15px;
+}
+
+.big-card__description > p > a {
+  font-size: 15px;
+  color: gray;
+}
+
+.big-card__photo > img {
+  width: 100%;
+  min-width: 396px;
+}
+
+- No arquivo home.component.html copiar a class container__articles e colar no arquivo home.component.css;
+- No arquivo home.component.css escreva:
+
+.container__articles {
+  margin-top: 30px;
+}
+
+
