@@ -37,12 +37,12 @@
 	  color: white;
 	  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	};
-	
+
 	a {
   	  text-decoration: none;
 	}
 
-- No terminal livre criar os componentes: 
+- No terminal livre criar os componentes:
 	ng g c components/menu-bar;
 	ng g c components/menu-title;
 	ng g c components/big-card;
@@ -84,7 +84,7 @@
 - Deletar o arquivo .spec.ts na pasta src/app/pages/home/home.component.spec.ts;
 - Copiar o seletor do arquivo home.component.ts e colar no arquivo app.component.hmtl EXEMPLO: <app-home></app-home>;
 - Copiar o seletor do arquivo menu-title.component.ts e colar no arquivo home.component.html EXEMPLO: <app-menu-title></app-menu-title>;
-- No arquivo home.component.html escrever: 
+- No arquivo home.component.html escrever:
 
 <div class="container__articles">
   <div class="articles__main">
@@ -119,7 +119,7 @@
 - No arquivo big-card.component.css escrever:
 
 .container__big-card {
-  border: solid white 2px;
+  /*border: solid white 2px; Coloca uma borda para mostrar o espaço em que o conteúdo está*/
   margin-left: 20px;
   margin-right: 20px;
   width: 400px;
@@ -157,4 +157,106 @@
   margin-top: 30px;
 }
 
+- No arquivo small-card.component.ts copiar o seletor e colar no arquivo home.component.thml
+EXEMPO:
+
+<div class="articles__others">
+    <app-small-card></app-small-card>
+  </div>
+
+- No arquivo home.component.css dentro da class container__articles escrever:
+
+.container__articles {
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+- No arquivo small-card.component.html criar o card semelhante ao big-card:
+
+<div class="container__small-card">
+  <div class="container__small-card-content">
+    <div class="small-card__photo">
+      <img src="data:image/png;base64,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"
+       alt="" srcset="">
+    </div>
+
+    <div class="small-card__title">
+      <h1><a href="#">Saiu a nova versão do Angular</a></h1>
+    </div>
+
+  </div>
+  <div class="container__small-card__separator">
+    <hr>
+  </div>
+</div>
+
+- No arquivo small-card.component.css escrever:
+
+.container__small-card {
+  /*border: solid white 2px; Coloca uma borda para mostrar o espaço em que o conteúdo está */
+  width: 700px;
+  margin-bottom: 15px;
+}
+
+.container__small-card-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.small-card__photo > img {
+  width: 200px;
+  min-width: 200px;
+  margin-right: 20px;
+}
+
+.small-card__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container__small-card__separator {
+  margin-top: 10px;
+}
+
+- No arquivo menu-bar.component.html escrever:
+
+<div class="container__menu-bar">
+  <ul>
+    <li><a href="#">Linkedin</a></li>
+    <li><span>&#8901;</span></li> <!-- bolinha para separar info. -->
+    <li><a href="#">GitHub</a></li>
+    <li><span>&#8901;</span></li>
+    <li><a href="#">Instagram</a></li>
+  </ul>
+</div>
+
+- No arquivo arquivo menu-bar.component.css escrever:
+
+.container__menu-bar > ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.container__menu-bar > ul > li {
+  margin-right: 20px;
+  list-style: none;
+}
+
+- No arquivo home.component.html criar uma tag <header> e adicionar a tag <app-menu-bar>:
+
+<header>
+  <app-menu-bar></app-menu-bar>
+</header>
+
+- No arquivo home.component.css escrever:
+
+header {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
 
