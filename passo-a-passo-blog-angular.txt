@@ -260,3 +260,5 @@ header {
   justify-content: center;
 }
 
+- Para criar responsividade copiar o arquivo css do componente que deseja e renomear nome-do-componente.responsive.component.css;
+- Para tornar visível esse arquivo responsívo na página, dentro do arquivo TypeScript(TS) do componente que foi criado adicionar o nome do arquivo css responsivo ao @Component stylesUrls. Um componente pode ter mais de um arquivo css;
