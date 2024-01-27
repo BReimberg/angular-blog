@@ -341,3 +341,198 @@ NO HTML DO ARQUIVO home.component.html:
     <app-small-card photoSmallCover="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWRRcC7CJk1SyEIG7kUeE7DPAaT78UoSkL6w&usqp=CAU"
     cardSmallTitle="Boas Práticas Angular"></app-small-card>
   </div>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- CRIANDO OUTRA PÁGINA -
+
+- No terminal do VSCode escrever ng g c pages/content para gerar um novo componente;
+- No arquivo app-routing.modules.ts escrever a rota de direcionamento utilizando o path;
+- No arquivo app.component.html remover a tag <app-home></app-home>;
+- No arquivo app-routing.modules.ts escrever:
+
+import { HomeComponent } from './pages/home/home.component';
+import { ContentComponent } from './pages/content/content.component';
+
+const routes: Routes = [
+  {
+    path:'',
+    component: HomeComponent
+  },
+  {
+    path:'content',
+    component: ContentComponent
+  }
+];
+
+- Na pasta content excluir o arquivo spec.ts (pois não será feito teste unitário)
+- No arquivo content.component.html escrever:
+
+<div class="container__content">
+  <div class="content__cover">
+    <img src="ADICIONAR UMA IMAGEM" alt="">
+  </div>
+  <div class="content__title">
+    <h1>TÍTULO DA NOTÍCIA</h1>
+  </div>
+  <div class="content__description">
+    <p>DESCRIÇÃO/TEXTO/ARTIGO</p>
+  </div>
+</div>
+
+- No arquivo content.component.html escrever a tag para retornar a página inicial:
+
+<a [routerLink]="['']"> << VOLTAR </a>
+
+- No arquivo content.component.css
+
+.container__content {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content__cover > img {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 500px;
+  min-width: 500px;
+  height: 300px;
+}
+
+.content__description > p {
+  margin: 20px 50px;
+  text-align: justify;
+  color: rgb(160, 159, 159);
+}
+
+- No arquivo home.component.html recortar a tag <header> e colar no arquivo app.component.html:
+
+<header>
+  <app-menu-bar></app-menu-bar>
+</header>
+
+- No arquivo home.componet.css recortar o stylo do header e colar no arquivo app.component.css:
+
+header {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- DINAMIZAR A PÁGINA -
+
+- No arquivo content.component.ts criar propriedades para a imagem, título e descrição da notícia:
+
+@Input()
+  photoContentCover: string = "CAMINHO DA IMAGEM"
+  @Input()
+  titleContent: string = "TÍTULO"
+  @Input()
+  descriptionContent: string = "DESCRIÇÃO/TEXTO/ARTIGO"
+
+- No arquivo content.comonent.html modificar os elementos estáticos por propriedades criadas no arquivo content.component.ts:
+
+<div class="container__content">
+  <a [routerLink]="['']"> << VOLTAR </a>
+  <div class="content__cover">
+    <img src="{{ photoContentCover }}" alt="">
+  </div>
+
+  <div class="content__title">
+    <h1>{{ titleContent }}</h1>
+  </div>
+  <div class="content__description">
+    <p>{{ descriptionContent }}</p>
+  </div>
+  <a [routerLink]="['']"> << VOLTAR </a>
+</div>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- Criar uma pasta dentro da pasta app chamada data;
+- Criar um arquvivo chamado dataFake dentro da pasta data;
+- Dentro da pasta environments.ts copiar:
+
+export const environment = {
+  production: false
+};
+
+- Colar no arquivo dataFake.ts e modificar:
+
+export const dataFake = [
+  {
+    "id":0,
+    "photo":"LINK",
+    "title": "TÍTULO",
+    "description": "DESCRIÇÃO"
+  }
+];
+
+- No arquivo app-routing.module.ts na parte de rotas adicionar o ID:
+
+{
+    path:'content/:id',
+    component: ContentComponent
+  }
+
+- No arquivo big-card.component.ts adicionar a propriedade:
+
+@Input()
+Id:string = "0"
+
+- No arquivo home.component.html adicionar o Id dentro da tag big-card:
+
+<div class="articles__main">
+    <app-big-card
+    Id="0"
+    photoCover="https://miro.medium.com/v2/resize:fit:1358/0*KNqK1IFDqENcyGXS"
+    cardTitle="Saiu a nova versão do Angular"
+    cardDescription="ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius purus et lacus sagittis pulvinar. In elementum dui non quam eleifend, vitae molestie lectus ullamcorper."></app-big-card>
+  </div>
+
+- No arquivo big-card.component.html alterar o link das tags <h1> e <p>:
+
+<div class="big-card__title">
+    <h1><a [routerLink]="['content', Id]">{{ cardTitle }}</a></h1>
+  </div>
+
+<div class="big-card__description">
+    <p><a [routerLink]="['content', Id]">{{ cardDescription }}</a></p>
+  </div>
+
+- No arquivo small-card.component.ts adicionar a propriedade Id:
+
+@Input()
+Id:string = "0"
+
+- No arquivo small-carde.component.html alterar o link da tag <h1>:
+
+<div class="small-card__title">
+      <h1><a [routerLink]="['content', Id]">{{ cardSmallTitle }}</a></h1>
+    </div>
+
+- No arquivo home.component.hmtl adicionar Id as tags <small-card>:
+
+<app-small-card
+    Id="1"
+    photoSmallCover="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr6a3JwynKKhblkrjpWw7HlHo18AooKWZELw&usqp=CAU"
+    cardSmallTitle="Conhecendo o Universo Angular"></app-small-card>
+
+- No arquivo content.component.ts adicionar dentro do construtor:
+
+  constructor(
+    private route:ActivatedRoute
+  ) { }
+
+- No arquivo content.component.ts adicionar dentro do ngOnInit:
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe( value =>
+      console.log(value.get("id"))
+      )
+  }
