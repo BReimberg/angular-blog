@@ -536,3 +536,33 @@ Id:string = "0"
       console.log(value.get("id"))
       )
   }
+
+- No arquivo content.component.ts adicionar no campo das propriedades:
+
+private id:string | null = "0" --> COMO ESTÁ NA LINHA 18 DO ARQUIVO;
+
+- No arquivo content.component.ts adicionar no campo ngOnInit():
+
+ngOnInit(): void {
+    this.route.paramMap.subscribe( value =>
+      this.id = value.get("id")
+      )
+
+      this.setValueToComponent(this.id)
+  }
+
+- No arquivo content.component.ts importar dataFake:
+
+import { dataFake } from '../../data/dataFake';
+
+- No arquivo content.component.ts criar uma função:
+
+setValueToComponent(id:string | null) {
+    const result = dataFake.filter(article => article.id == id)[0]
+    this.photoContentCover = result.photo;
+    this.titleContent = result.title;
+    this.descriptionContent = result.description;
+}
+
+- Adicionar as informações de imagem, título e descrição no arquivo dataFake.ts;
+
