@@ -565,4 +565,3 @@ setValueToComponent(id:string | null) {
 }
 
 - Adicionar as informações de imagem, título e descrição no arquivo dataFake.ts;
-
